@@ -32,13 +32,14 @@ class AnotherCarouselRun extends CarouselRun {
     protected int prohod = 0;
 
     int count = 0;
+
     @Override
     public int next() {
         //override behaviour as needed
         if (isFinished()) {
             return -1;
         } else {
-            while (array[position %= array.length] <= 1) {
+            while (array[position %= array.length] <= 0) {
                 position++;
             }
         }
@@ -54,15 +55,15 @@ class AnotherCarouselRun extends CarouselRun {
             }
         }
 
-        if (prohod++ < count){
+        if (prohod++ < count) {
             return array[position++];
         }
 
-//        System.out.print(array[position] + " ");
 
-        return ((array[position++] /= 2) == 0) ? array[position++] /= 2 : array[position - 1];
-
-//      return array[position++] /= 2;
+        if ((array[position++] /= 2) == 0) {
+            next();
+        }
+        return array[position - 1];
     }
 
     @Override
