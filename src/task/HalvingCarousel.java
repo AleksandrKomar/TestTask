@@ -5,7 +5,6 @@ public class HalvingCarousel extends DecrementingCarousel {
     public HalvingCarousel(final int capacity) {
         super(capacity);
     }
-
     @Override
     public CarouselRun run() {
 
@@ -16,6 +15,5 @@ public class HalvingCarousel extends DecrementingCarousel {
         return null;
 
     }
-
 
 }

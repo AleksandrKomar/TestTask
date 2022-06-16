@@ -2,7 +2,6 @@ package task;
 
 public class DecrementingCarousel {
 
-
     private final int capacity;
     static int[] carousel;
     int index;

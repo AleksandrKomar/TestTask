@@ -2,7 +2,6 @@ package task;
 
 public class CarouselRun {
 
-
     protected final int[] array = DecrementingCarousel.carousel.clone();
     protected int position = 0;
 
@@ -31,7 +30,7 @@ class AnotherCarouselRun extends CarouselRun {
 
     protected int prohod = 0;
 
-    int count = 0;
+   protected int count = 0;
 
     @Override
     public int next() {
