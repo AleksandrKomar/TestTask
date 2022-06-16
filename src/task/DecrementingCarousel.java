@@ -3,9 +3,11 @@ package task;
 public class DecrementingCarousel {
 
     private final int capacity;
+    static int countOut;
     static int[] carousel;
     int index;
     boolean isRun;
+
 
     {
         index = 0;
@@ -14,6 +16,12 @@ public class DecrementingCarousel {
 
     public DecrementingCarousel(int capacity) {
         this.capacity = capacity;
+        carousel = new int[capacity];
+    }
+
+    public DecrementingCarousel(int capacity, int limit) {
+        this.capacity = capacity;
+        this.countOut = limit;
         carousel = new int[capacity];
     }
 

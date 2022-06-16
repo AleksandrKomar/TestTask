@@ -5,6 +5,7 @@ public class CarouselRun {
     protected final int[] array = DecrementingCarousel.carousel.clone();
     protected int position = 0;
 
+    int countOut = DecrementingCarousel.countOut;
     public int next() {
         if (isFinished())
             return -1;
@@ -97,6 +98,8 @@ class GraduallyCarouselRun extends CarouselRun {
                 }
             } while ((array[position] <= 0) && !isFinished());
         }
+
+
         return beforeDecreasing;
 
 
@@ -111,5 +114,43 @@ class GraduallyCarouselRun extends CarouselRun {
             }
         return true;
 
+    }
+}
+
+class GraduallyCarouselRunWithLimit extends CarouselRun {
+
+    int decrement = 1;
+
+    int count;
+
+    @Override
+    public int next() {
+
+            if (isFinished())
+                return -1;
+            else {
+                while (array[position %= array.length] <= 0) {
+                    position++;
+                }
+            }
+
+
+        if (count == countOut) {
+            return -1;
+        }
+
+        count ++;
+        return array[position++]--;
+
+    }
+
+    @Override
+    public boolean isFinished() {
+        //override behaviour as needed
+        for (int el : array)
+            if (el> 0 && count < countOut){
+                return false;
+            }
+        return true;
     }
 }
