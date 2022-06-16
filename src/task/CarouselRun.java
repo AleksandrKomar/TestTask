@@ -78,49 +78,37 @@ class AnotherCarouselRun extends CarouselRun {
 
 class GraduallyCarouselRun extends CarouselRun {
 
-    protected int prohod = 0;
-
-    protected int count = 0;
+    int decrement = 1;
 
     @Override
     public int next() {
-        //override behaviour as needed
-        if (isFinished()) {
+
+        int beforeDecreasing;
+        if (isFinished())
             return -1;
-        } else {
-            while (array[position %= array.length] <= 0) {
+        else {
+            beforeDecreasing = array[position];
+            array[position] -= decrement;
+            do {
                 position++;
-            }
-        }
-
-        if (count == 0) {
-
-            for (int i = 0; i < array.length; i++) {
-
-                if (array[i] > 0) {
-                    count++;
+                if (position == array.length) {
+                    decrement++;
+                    position = 0;
                 }
-
-            }
+            } while ((array[position] <= 0) && !isFinished());
         }
-
-        if (prohod++ < count) {
-            return array[position++];
-        }
+        return beforeDecreasing;
 
 
-        if ((array[position++] -=1) == 0) {
-            next();
-        }
-        return array[position - 1];
     }
 
     @Override
     public boolean isFinished() {
         //override behaviour as needed
         for (int el : array)
-            if (el > 1)
+            if (el> 0){
                 return false;
+            }
         return true;
 
     }
